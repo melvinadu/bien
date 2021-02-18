@@ -26,6 +26,12 @@ gem 'jbuilder', '~> 2.7'
 #add in our geocoding gem
 gem "geocoder"
 
+# make our form nice and easy
+gem "simple_form"
+
+# make our filters active
+gem "active_link_to"
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

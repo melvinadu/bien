@@ -1,5 +1,9 @@
 class Review < ApplicationRecord
 
+  # add an association that has a 1-to-many relationship
+  has_many :comments
+
+
   geocoded_by :address
   after_validation :geocode
 
@@ -9,6 +13,7 @@ class Review < ApplicationRecord
   validates :restaurant, presence: true
   validates :price, numericality: {only_integer: true, greater_than_or_equal_to: 0, less_than_or_equal_to: 10}
   validates :cuisine, length: {minimum: 3}
+  validates :ambiance, length: {minimum: 3}
 
   validates :address, presence: true
 
