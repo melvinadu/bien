@@ -1,5 +1,8 @@
 class ReviewsController < ApplicationController
 
+  #check if logged in
+  before_action :check_login, except: [:index, :show]
+
   def index
     # this is our list page for our reviews
 
@@ -38,6 +41,11 @@ class ReviewsController < ApplicationController
     # take info from the form and add it to the model
     @review = Review.new(form_params)
 
+
+    #and then associate it with the user
+    @review.user = @current_user
+
+
     #we want to check if the model can be saved
     # if it is, we're going to the home page again
     if @review.save
@@ -60,8 +68,10 @@ class ReviewsController < ApplicationController
     #find the individual review
     @review = Review.find(params[:id])
 
-    #destroy it
-    @review.destroy
+    #destroy only if its their own review
+    if @review.user == @current_user
+      @review.destroy
+    end
 
     #redirect to the homepage
     redirect_to root_path
@@ -71,19 +81,27 @@ class ReviewsController < ApplicationController
     #find the individual review (to_edit)
     @review = Review.find(params[:id])
 
+    if @review.user != @current_user
+      redirect_to root_path
+    end
+
   end
 
   def update
     #find the individual review
     @review = Review.find(params[:id])
 
-    #update with the new info from the form_for
-    if @review.update(form_params)
-
-      #redirect somewhere new
-      redirect_to review_path(@review)
+    if @review.user != @current_user
+      redirect_to root_path
     else
-      render "edit"
+      #update with the new info from the form_for
+      if @review.update(form_params)
+
+        #redirect somewhere new
+        redirect_to review_path(@review)
+      else
+        render "edit"
+      end
     end
 
   end
