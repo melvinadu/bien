@@ -43,6 +43,18 @@ gem "active_link_to"
 #add in profanity filter
 gem "profanity_filter"
 
+#lets add uploading file
+gem 'carrierwave', '~> 1.0'
+#adding in resizing app
+gem 'mini_magick'
+
+#add admin panel
+gem 'activeadmin'
+gem 'devise'
+gem 'cancancan'
+gem 'draper'
+gem 'pundit'
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 

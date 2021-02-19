@@ -1,0 +1,6 @@
+<h1> <%= @content.title %> </h1>
+
+<%= image_tag @content.photo.url if @content.photo.url  %>
+
+
+<%= simple_format @content.body %>

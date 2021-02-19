@@ -48,6 +48,9 @@
   <div class="review">
     <%= link_to review_path(review) do %>
 
+    <%= image_tag review.photo.thumb.url if review.photo.url  %>
+
+
       <h2><%= review.title %></h2>
       <p>
         <%= review.cuisine %> -
