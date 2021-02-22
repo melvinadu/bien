@@ -49,6 +49,8 @@ class ReviewsController < ApplicationController
     #we want to check if the model can be saved
     # if it is, we're going to the home page again
     if @review.save
+      flash[:success] = "Your revier was posted!"
+
       redirect_to root_path
     #if not, show the same form
     else

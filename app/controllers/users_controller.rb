@@ -23,6 +23,8 @@ class UsersController < ApplicationController
       # save the session with the user
       session[:user_id] = @user.id
 
+      flash[:success] = "Welcome to Bien Reviews!"
+
       redirect_to users_path
     else
       render "new"
